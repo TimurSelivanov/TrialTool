@@ -26,7 +26,7 @@ public class CustomerValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Customer customer = (Customer) o;
 
-        if(customersService.findCustomerByPhone(customer.getPhone()).isPresent())
+        if (customersService.findCustomerByPhone(customer.getPhone()).isPresent())
             errors.rejectValue("phone", "", "Customer with this phone number is already exist");
     }
 }
