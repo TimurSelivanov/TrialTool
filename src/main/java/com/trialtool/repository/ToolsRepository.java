@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ToolsRepository extends JpaRepository<Tool, Integer> {
-    List<Tool> findByTitleStartingWith(String title);
+    List<Tool> findByTypeStartingWith(String title);
 }
 
