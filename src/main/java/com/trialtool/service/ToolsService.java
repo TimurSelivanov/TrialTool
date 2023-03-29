@@ -55,7 +55,7 @@ public class ToolsService {
     }
 
     //return null if tool has no customer
-    public Customer getToolCustomer(int id) {
+    public Customer getToolHolder(int id) {
         //no need to call Hibernate.initialize. Customer is "One" side and has eager loading rule
         return toolsRepository.findById(id).map(Tool::getCustomer).orElse(null);
     }
