@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Details</title>
 </head>
 <body>
+<p th:text="${customer.name + ', ' + customer.phone}">VALUE</p>
+
+<div th:if="${tools.isEmpty()}">
+    <p>Customer haven`t got any tool yet</p>
+    <hr/>
+</div>
+
+<div th:if="${!tools.isEmpty()}">
+    <hr/>
+    <b>Tools</b>
+    <br/>
+    <table th:each="tool : ${tools}">
+        <tr>
+            <td>
+                <span th:text="${tool.brand + ', ' + tool.type}"
+                      th:style="${tool.isExpired()} ? 'color: red' : 'color: black'">
+                    tool
+                </span>
+            </td>
+        </tr>
+    </table>
+    <hr/>
+</div>
+
+<form th:method="GET" th:action="@{/customers/{id}/update(id=${customer.id})}">
+    <input type="submit" value="Update"/>
+</form>
+
+<form th:method="DELETE" th:action="@{/customers/{id}(id=${customer.id})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+<br/>
+<hr/>
+
+<a href="/customers">Customers</a>
 
 </body>
 </html>

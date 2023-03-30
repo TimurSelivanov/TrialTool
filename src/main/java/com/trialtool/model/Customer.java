@@ -1,6 +1,7 @@
 package com.trialtool.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class Customer {
     @Size(min = 2, max = 100, message = "Name should be not less then 2 and more then 100 symbols")
     @Column(name = "name")
     private String name;
+    @NotEmpty(message = "Please enter the phone")
     @Column(name = "phone")
     private int phone;
     @OneToMany(mappedBy = "customer")
