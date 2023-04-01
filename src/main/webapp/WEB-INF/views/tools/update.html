@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update</title>
+    <title>Update tool</title>
 </head>
 <body>
+
+<form th:method="PATCH" th:action="@{/tools/{id}(id=${tool.id})}" th:object="${tool}">
+    <label for="brand">Enter brand: </label>
+    <input type="text" th:field="*{brand}" id="brand"/>
+    <div style="color:red" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}">Brand Error</div>
+    <br/>
+    <label for="type">Enter type: </label>
+    <input type="text" th:field="*{type}" id="type"/>
+    <div style="color:red" th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Type Error</div>
+    <br/>
+    <input type="submit" value="Update"/>
+</form>
 
 </body>
 </html>

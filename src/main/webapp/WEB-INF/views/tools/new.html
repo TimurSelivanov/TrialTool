@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New</title>
+    <title>New tool</title>
 </head>
 <body>
+
+<form th:method="POST" th:action="@{/tools}" th:object="${tool}">
+    <label for="brand">Enter tool brand: </label>
+    <input type="text" th:field="*{brand}" id="brand"/>
+    <div style="color:red" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}">Brand Error</div>
+    <br/>
+    <label for="type">Enter tool type </label>
+    <input type="text" th:field="*{type}" id="type"/>
+    <div style="color:red" th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Type Error</div>
+    <br/>
+    <input type="submit" value="Add"/>
+</form>
 
 </body>
 </html>

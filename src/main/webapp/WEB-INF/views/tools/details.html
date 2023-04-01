@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Details</title>
 </head>
 <body>
+<p th:text="${tool.brand + ', ' + tool.type}">VALUE</p>
+
+<div th:if="${customer}">
+    <span>Tool has been taken by </span> <span th:text="${customer.name}">Customer Name</span>
+
+    <form th:method="PATCH" th:action="@{/tools/{id}/release(id=${tool.id})}">
+        <input type="submit" value="Release tool"/>
+    </form>
+</div>
+
+<div th:if="${customers}">
+    <span>Who wants to take this tool: </span>
+    <form th:method="PATCH" th:action="@{/tools/{id}/assign(id=${tool.id})}">
+        <label for="customer">Choose customer</label>
+        <select th:object="${customer}" th:field="*{id}" id="customer">
+            <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}">
+            </option>
+        </select>
+        <input type="submit" value="Assign tool"/>
+    </form>
+</div>
+
+<hr/>
+
+<form th:method="GET" th:action="@{/tools/{id}/edit(id=${tool.id})}">
+    <input type="submit" value="Update"/>
+</form>
+
+<form th:method="DELETE" th:action="@{/tools/{id}(id=${tool.id})}">
+    <input type="submit" value="Delete"/>
+</form>
 
 </body>
 </html>

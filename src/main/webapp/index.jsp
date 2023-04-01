@@ -6,5 +6,9 @@
 <hr/>
 
 <a href="/customers">Customers</a>
+<br/>
+<hr/>
+
+<a href="/tools">Tools</a>
 </body>
 </html>

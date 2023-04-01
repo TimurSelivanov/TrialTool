@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Search</title>
 </head>
 <body>
+
+<form th:method="POST" th:action="@{/tools/search}">
+    <label for="query">Enter search request: </label>
+    <input type="text" id="query" name="brand"/>
+    <br/>
+    <input type="submit" value="Search"/>
+</form>
+
+<div th:if="${tools}">
+    <div th:if="${tools.isEmpty()}">
+        <span>No tool found</span>
+    </div>
+
+    <div th:each="tool : ${tools}">
+        <p th:text="${tool.brand + ', ' + tool.type}">tool</p>
+
+        <div th:if="${tool.customer != null}">
+            <span>Tool has been taken by: </span> <span th:text="${tool.customer.name}">Customer Name</span>
+        </div>
+
+        <div th:if="${tool.customer == null}">
+            <span>Tool is free</span>
+        </div>
+
+        <hr/>
+    </div>
+</div>
 
 </body>
 </html>
